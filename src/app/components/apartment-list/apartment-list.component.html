@@ -1,0 +1,5 @@
+<app-apartment-list-item
+  *ngFor="let record of records"
+  [record]="record"
+  (select)="select.emit($event)"
+></app-apartment-list-item>

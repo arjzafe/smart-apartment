@@ -1,0 +1,20 @@
+<div class="container" [ngClass]="{ 'has-pins': apartmentRecords$ | async }">
+  <app-map-controls
+    (loadPins)="loadPins()"
+    (showAllPins)="showAllPins()"
+    (removeAllPins)="removeAllPins()"
+  ></app-map-controls>
+  <div class="sidebar" *ngIf="apartmentRecords$ | async as records">
+    <div class="scroll-container">
+      <ng-scrollbar [autoWidthDisabled]="true">
+        <ng-container>
+          <app-apartment-list
+            [records]="records"
+            (select)="zoomToPin($event)"
+          ></app-apartment-list>
+        </ng-container>
+      </ng-scrollbar>
+    </div>
+  </div>
+  <div class="map" id="map"></div>
+</div>
